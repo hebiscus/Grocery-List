@@ -16,7 +16,8 @@ async function main() {
 }
 
 const indexRouter = require('./routes/index');
-const listRouter = require('./routes/list')
+const listRouter = require('./routes/list');
+const categoryRouter = require('./routes/categories');
 
 const app = express();
 
@@ -32,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/list', listRouter);
-
+app.use('/categories', categoryRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

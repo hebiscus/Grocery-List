@@ -1,0 +1,9 @@
+extends layout 
+
+block content
+    h1= title 
+    div 
+        each category in category_list
+            div 
+                h3= category.name 
+                p= category.description

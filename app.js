@@ -16,6 +16,7 @@ async function main() {
 }
 
 const indexRouter = require('./routes/index');
+const listRouter = require('./routes/list')
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/list', listRouter);
 
 
 // catch 404 and forward to error handler

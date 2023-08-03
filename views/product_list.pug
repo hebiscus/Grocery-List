@@ -1,0 +1,11 @@
+extends layout 
+
+block content
+    h1= title 
+    div 
+        each product in product_list
+            div 
+                h3= product.name 
+                p= product.description
+                p= product.category.name 
+                p= product.price

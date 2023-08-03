@@ -7,3 +7,6 @@ block content
             div 
                 h3= store.name 
                 p= store.description
+                ul 
+                    each product in store.products 
+                        li= product.name

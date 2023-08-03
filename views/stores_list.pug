@@ -1,0 +1,9 @@
+extends layout 
+
+block content
+    h1= title 
+    div 
+        each store in store_list
+            div 
+                h3= store.name 
+                p= store.description

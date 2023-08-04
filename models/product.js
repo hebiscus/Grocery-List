@@ -6,7 +6,6 @@ const ProductSchema = new Schema({
     description: {type: String, maxLength: 1000},
     category: {type: Schema.Types.ObjectId, ref: "ProductCategory", required: true},
     price: {type: Number, required: true},
-    // stockStatus: [ {type: Schema.Types.ObjectId, ref: "Store", required: true }]
 })
 
 ProductSchema.virtual("url").get(function () {

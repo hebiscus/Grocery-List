@@ -3,6 +3,6 @@ extends layout
 block content
     h1= title
     div 
-        h2= product.category.name
+        a(href=product.category.url) #{product.category.name}
         p= product.description 
         p= product.price

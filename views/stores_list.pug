@@ -5,8 +5,5 @@ block content
     div 
         each store in store_list
             div 
-                h3= store.name 
-                p= store.description
-                ul 
-                    each product in store.products 
-                        li= product.name
+                a(href=store.url) #{store.name} 
+

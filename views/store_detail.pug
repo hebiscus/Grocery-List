@@ -1,0 +1,9 @@
+extends layout 
+
+block content
+    h1= title
+    div 
+        p= store.description
+        ul Available products:
+            each product in store.products 
+                li= product.name

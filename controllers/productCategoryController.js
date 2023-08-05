@@ -49,3 +49,9 @@ exports.create_post = [
           }
     }),
 ];
+
+
+exports.delete_post = asyncHandler(async (req, res, next) => { 
+    await ProductCategory.findByIdAndDelete(req.params.id);
+    res.redirect("/categories");
+})

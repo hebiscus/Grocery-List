@@ -10,10 +10,7 @@ router.post("/category/create", Category_controller.create_post);
 
 router.get("/category/:id", Category_controller.detail);
 
-
-
-// router.get("/category/:id/delete", Category_controller.delete_get);
-// router.get("/category/:id/delete", Category_controller.delete_post);
+router.get("/category/:id/delete", Category_controller.delete_post);
 
 // router.get("/category/:id/update", Category_controller.update_get);
 // router.get("/category/:id/update", Category_controller.update_post);

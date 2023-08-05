@@ -7,7 +7,7 @@ const ProductCategorySchema = new Schema({
 })
 
 ProductCategorySchema.virtual("url").get(function () {
-    return `/categories/${this.id}`;
+    return `/categories/category/${this.id}`;
 })
 
 module.exports = mongoose.model("ProductCategory", ProductCategorySchema);

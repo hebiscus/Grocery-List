@@ -5,6 +5,5 @@ block content
     div 
         each category in category_list
             div 
-                h3= category.name 
-                p= category.description
+                a(href=category.url) #{category.name}
                 

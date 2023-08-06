@@ -50,8 +50,35 @@ exports.create_post = [
     }),
 ];
 
-
 exports.delete_post = asyncHandler(async (req, res, next) => { 
     await ProductCategory.findByIdAndDelete(req.params.id);
     res.redirect("/categories");
-})
+});
+
+exports.update_get = asyncHandler(async (req, res, next) => { 
+    const category = await ProductCategory.findById(req.params.id).orFail.exec();
+    res.render("category_form", {title: "Update a Category", category: category})
+});
+
+exports.update_post = [
+    body("name").trim().isLength({ min: 3, max: 15 }).escape().withMessage("Category name must have between 3-15 letters"),
+    
+    asyncHandler(async (req, res, next) => { 
+      const errors = validationResult(req);
+
+      const category = new ProductCategory({ name: req.body.name, description: req.body.description, _id: req.params.id});
+
+      if (!errors.isEmpty()) {
+        res.render("category_form", {
+          title: "Update a category",
+          category: category,
+          errors: errors.array(),
+        });
+        return;
+      } else {
+        const updatedCategory = await ProductCategory.findByIdAndUpdate(req.params.id, category);
+        res.redirect(updatedCategory.url);
+      }
+    }),
+];
+

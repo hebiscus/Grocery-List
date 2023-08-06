@@ -29,3 +29,21 @@ exports.create_post = (req, res, next) => {
     // res.render("product_form", {title: "Add a product"})
     res.send("NOT IMPLEMENTED: Product ADD POST");
 };
+
+exports.delete_post = asyncHandler(async (req,res,next) => {
+    const product = await Product.findByIdAndDelete(req.params.id);
+    res.redirect("/list");
+});
+
+exports.update_get = asyncHandler(async (req, res, next) => {
+    const product = await Product.findById(req.params.id).orFail().exec();
+    res.render("product_form", {title: "Update a form", product: product})
+});
+
+exports.update_post = [
+    
+
+    ,asyncHandler(async (req, res, next) => {
+
+    }),
+];

@@ -71,9 +71,28 @@ exports.update_get = asyncHandler(async (req, res, next) => {
 });
 
 exports.update_post = [
-    
+    body("name").trim().isLength({min: 3, max: 40}).escape().withMessage("Product name must have between 3-40 characters"),
+    body("price").isFloat({min:1}).withMessage("Price can't be negative..."),
 
-    ,asyncHandler(async (req, res, next) => {
+    asyncHandler(async (req, res, next) => {
+        const errors = validationResult(req);
 
+        const selectedCategory = await ProductCategory.findById(req.body.category);
+        const categories = await ProductCategory.find().exec();
+
+        const product = new Product({ _id: req.params.id, name: req.body.name, description: req.body.description, category: selectedCategory, price: req.body.price});
+        
+        if (!errors.isEmpty()) {
+            res.render("product_form", {
+              title: "Create a product",
+              product: product,
+              categories: categories,
+              errors: errors.array(),
+            });
+            return;
+        } else {
+            const updatedProduct = await Product.findByIdAndUpdate(req.params.id, product);
+            res.redirect(updatedProduct.url);s
+        }
     }),
 ];

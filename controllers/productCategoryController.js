@@ -21,7 +21,7 @@ exports.detail = asyncHandler(async (req, res, next) => {
 
 exports.create_get = asyncHandler(async (req, res, next) => {
     res.render("category_form", {title: "Create a category"})
-})
+});
 
 exports.create_post = [
     body("name").trim().isLength({ min: 3, max: 15 }).escape().withMessage("Category name must have between 3-15 letters"),

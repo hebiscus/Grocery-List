@@ -10,12 +10,11 @@ block content
         label(for="description") Description:
         input#description(type='text', placeholder='description' name='description' value=(undefined===product ? '' : product.description))
         label(for="category") Category:
-        input#category-choice(list="category" name='description')
-        datalist#category
+        select#category-select(name='category')
             each category in categories
-                option(value=category.name)
+                option(value=category.id) #{category.name}
         label(for="price") Price:
-        input#price(type='number' min=1 placeholder='price in $' name='price' value=(undefined===product ? '' : product.price))
+        input#price(type='number' min=1 splaceholder='price in $' name='price' step="0.01" value=(undefined===product ? '' : product.price))
     button(type='submit') Submit
 
   if errors

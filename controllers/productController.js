@@ -34,7 +34,7 @@ exports.create_post =  [
         const errors = validationResult(req);
 
         const selectedCategory = await ProductCategory.findById(req.body.category);
-        console.log(selectedCategory)
+        const categories = await ProductCategory.find().exec();
 
         const product = new Product({ name: req.body.name, description: req.body.description, category: selectedCategory, price: req.body.price});
 
@@ -42,6 +42,7 @@ exports.create_post =  [
             res.render("product_form", {
               title: "Create a product",
               product: product,
+              categories: categories,
               errors: errors.array(),
             });
             return;
@@ -64,8 +65,9 @@ exports.delete_get = asyncHandler(async (req,res,next) => {
 });
 
 exports.update_get = asyncHandler(async (req, res, next) => {
+    const categories = await ProductCategory.find().exec();
     const product = await Product.findById(req.params.id).orFail().exec();
-    res.render("product_form", {title: "Update a form", product: product})
+    res.render("product_form", {title: "Update a form", product: product, categories: categories})
 });
 
 exports.update_post = [
